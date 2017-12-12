@@ -5,13 +5,25 @@ def input_students
   students = []
   # get the first name
   name = gets.chomp
+  # get the cohort
+  cohort = gets.chomp
   # while the name is not empty, repeat this code
+
   while !name.empty? do
     # add the student hash to the array
-    students << {name: name, cohort: :november, hobbies: :hobbies, height: :height, country_of_birth: :country_of_birth }
+    if !cohort.empty?
+    students << {name: name, cohort: cohort, hobbies: :hobbies, height: :height, country_of_birth: :country_of_birth }
     puts "Now we have #{students.count} students"
     # get another name from the user
     name = gets.chomp
+    cohort = gets.chomp
+    else
+      students << {name: name, cohort: :november, hobbies: :hobbies, height: :height, country_of_birth: :country_of_birth }
+      puts "Now we have #{students.count} students"
+      # get another name from the user
+      name = gets.chomp
+      cohort = gets.chomp
+    end
   end
   # return the array of students
   students
@@ -35,12 +47,18 @@ puts "The students of Villains Academy"
 puts "-------------"
 end
 def print(students)
+students.each_with_index {|student, index| puts "#{index+1}. #{student[:name]} #{student[:cohort]}"}
+end
+
+
+=begin
 counter = 0
 while counter <= students.length
 puts students[counter]
 counter += 1
 end
 end
+=end
 def print_footer(names)
   lineWidth = 75
 puts "Overall, we have #{names.count} great students".center(lineWidth)
