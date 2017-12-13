@@ -4,9 +4,9 @@ def input_students
   # create an empty array
   students = []
   # get the first name
-  name = gets.chomp
+  name = gets.delete("\n")
   # get the cohort
-  cohort = gets.chomp
+  cohort = gets.delete("\n")
   # while the name is not empty, repeat this code
 
   while !name.empty? do
@@ -15,14 +15,14 @@ def input_students
     students << {name: name, cohort: cohort, hobbies: :hobbies, height: :height, country_of_birth: :country_of_birth }
     puts students.count > 1 ? "Now we have #{students.count} students" : "Now we have #{students.count} student"
     # get another name from the user
-    name = gets.chomp
-    cohort = gets.chomp
+    name = gets.delete("\n")
+    cohort = gets.delete("\n")
     else
       students << {name: name, cohort: :november, hobbies: :hobbies, height: :height, country_of_birth: :country_of_birth }
       puts students.count > 1 ? "Now we have #{students.count} students" : "Now we have #{students.count} student"
       # get another name from the user
-      name = gets.chomp
-      cohort = gets.chomp
+      name = gets.delete("\n")
+      cohort = gets.delete("\n")
     end
   end
   # return the array of students
