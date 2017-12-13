@@ -24,16 +24,23 @@ end
 def print_header
   puts "The students of my cohort at Makers Academy"
   puts "-------------"
+
 end
 
 def print_students(students)
+  if students.to_a.length > 0
   students.each do |student|
     puts "#{student[:name]} #{student[:cohort]} cohort"
   end
+else
+end
 end
 
 def print_footer(names)
+  if names.to_a.length > 0
   puts "Overall, we have #{names.count} great students"
+else
+end
 end
 
 
