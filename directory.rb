@@ -13,13 +13,13 @@ def input_students
     # add the student hash to the array
     if !cohort.empty?
     students << {name: name, cohort: cohort, hobbies: :hobbies, height: :height, country_of_birth: :country_of_birth }
-    puts "Now we have #{students.count} students"
+    puts students.count > 1 ? "Now we have #{students.count} students" : "Now we have #{students.count} student"
     # get another name from the user
     name = gets.chomp
     cohort = gets.chomp
     else
       students << {name: name, cohort: :november, hobbies: :hobbies, height: :height, country_of_birth: :country_of_birth }
-      puts "Now we have #{students.count} students"
+      puts students.count > 1 ? "Now we have #{students.count} students" : "Now we have #{students.count} student"
       # get another name from the user
       name = gets.chomp
       cohort = gets.chomp
@@ -52,18 +52,9 @@ stu = students.sort_by {|a| a[:cohort].to_sym  }
 stu.each_with_index {|student, index| puts "#{index+1}. #{student[:name]} #{student[:cohort]}"}
 end
 
-
-=begin
-counter = 0
-while counter <= students.length
-puts students[counter]
-counter += 1
-end
-end
-=end
 def print_footer(names)
   lineWidth = 75
-puts "Overall, we have #{names.count} great students".center(lineWidth)
+puts names.count > 1 ? "Overall, we have #{names.count} great students".center(lineWidth) : "Overall, we have #{names.count} great student".center(lineWidth)
 end
 
 students = input_students
