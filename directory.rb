@@ -47,7 +47,9 @@ puts "The students of Villains Academy"
 puts "-------------"
 end
 def print(students)
-students.each_with_index {|student, index| puts "#{index+1}. #{student[:name]} #{student[:cohort]}"}
+# students.each_with_index {|student, index| "#{index+1}. #{student[:name]} #{student[:cohort]}"}
+stu = students.sort_by {|a| a[:cohort].to_sym  }
+stu.each_with_index {|student, index| puts "#{index+1}. #{student[:name]} #{student[:cohort]}"}
 end
 
 
