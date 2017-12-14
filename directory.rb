@@ -47,14 +47,19 @@ puts "The students of Villains Academy"
 puts "-------------"
 end
 def print(students)
-# students.each_with_index {|student, index| "#{index+1}. #{student[:name]} #{student[:cohort]}"}
+if students.to_a.length > 0
 stu = students.sort_by {|a| a[:cohort].to_sym  }
 stu.each_with_index {|student, index| puts "#{index+1}. #{student[:name]} #{student[:cohort]}"}
+else
+end
 end
 
 def print_footer(names)
+if names.to_a.length > 0
   lineWidth = 75
 puts names.count > 1 ? "Overall, we have #{names.count} great students".center(lineWidth) : "Overall, we have #{names.count} great student".center(lineWidth)
+else
+end
 end
 
 students = input_students
