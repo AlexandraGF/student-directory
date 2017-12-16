@@ -62,13 +62,13 @@ def save_students
   puts "which file do you want to write to\n 'students.csv' or 'senior_students.csv'"
   filename = gets.chomp
   if filename == "students.csv"
-  file = File.open("students.csv", "w")
+  file = File.open("students.csv", "w") do |file|
   @students.each {|student| file.puts ([student[:name], student[:cohort]].join(","))}
-  file.close
+end
   elsif filename == "senior_students.csv"
-    file = File.open("senior_students.csv", "w")
+    file = File.open("senior_students.csv", "w") do |file|
     @students.each {|student| file.puts ([student[:name], student[:cohort]].join(","))}
-    file.close
+  end
   end
 end
 
@@ -78,17 +78,17 @@ def load_students(filename = "students.csv")
   puts "which file do you want to load to\n 'students.csv' or 'senior_students.csv'"
   filename = gets.chomp
   if filename == "students.csv"
-  file = File.open("students.csv", "r")
+  file = File.open("students.csv", "r") do |file|
   file.readlines.each do |line| name, cohort = line.chomp.split(',')
     @students << {name: name, cohort: cohort.to_sym}
   end
-  file.close
+  end
   elsif filename == "senior_students.csv"
-  file = File.open("senior_students.csv", "r")
+  file = File.open("senior_students.csv", "r") do |file|
   file.readlines.each do |line| name, cohort = line.chomp.split(',')
     @students << {name: name, cohort: cohort.to_sym}
   end
-  file.close
+  end
   end
 end
 
