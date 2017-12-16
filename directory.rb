@@ -3,8 +3,8 @@
 def print_menu
   puts "Press '1' to type in the students"
   puts "Press '2' to show the students"
-  puts "Press '3' to save the list to students.csv file"
-  puts "Press '4' to load the list from students.csv file"
+  puts "Press '3' to save the list to file"
+  puts "Press '4' to load the list from file"
   puts "Press '5' when you want to leave the program"
 end
 
@@ -20,7 +20,7 @@ def process(selection)
   when "1" then puts "You have chosen to type in students"; input_students
   when "2" then puts "You have chosen to show the students"; show_students
   when "3" then puts "You have chosen to save to the file"; save_students
-  when "4" then puts "You have chosen to load from the file"; load_student
+  when "4" then puts "You have chosen to load from the file"; load_students
   when "5" then puts "You have chosen to leave the program"; exit
   else
     puts "I don't know what you meant, try again"
@@ -59,18 +59,39 @@ def print_footer
 end
 
 def save_students
+  puts "which file do you want to write to\n 'students.csv' or 'senior_students.csv'"
+  filename = gets.chomp
+  if filename == "students.csv"
   file = File.open("students.csv", "w")
   @students.each {|student| file.puts ([student[:name], student[:cohort]].join(","))}
   file.close
+  elsif filename == "senior_students.csv"
+    file = File.open("senior_students.csv", "w")
+    @students.each {|student| file.puts ([student[:name], student[:cohort]].join(","))}
+    file.close
+  end
 end
 
+
+
 def load_students(filename = "students.csv")
-  file = File.open(filename, "r")
+  puts "which file do you want to load to\n 'students.csv' or 'senior_students.csv'"
+  filename = gets.chomp
+  if filename == "students.csv"
+  file = File.open("students.csv", "r")
   file.readlines.each do |line| name, cohort = line.chomp.split(',')
     @students << {name: name, cohort: cohort.to_sym}
   end
   file.close
+  elsif filename == "senior_students.csv"
+  file = File.open("senior_students.csv", "r")
+  file.readlines.each do |line| name, cohort = line.chomp.split(',')
+    @students << {name: name, cohort: cohort.to_sym}
+  end
+  file.close
+  end
 end
+
 
 def try_load_students
   filename = ARGV.first
