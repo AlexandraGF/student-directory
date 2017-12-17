@@ -7,6 +7,7 @@ def print_menu
   puts "Press '2' to show the students"
   puts "Press '3' to save the list to file"
   puts "Press '4' to load the list from file"
+  puts "Press '5' to get the executed file's name"
   puts "Press '9' when you want to leave the program"
 end
 
@@ -23,6 +24,7 @@ def process(selection)
   when "2" then puts "You have chosen to show the students"; show_students
   when "3" then puts "You have chosen to save to the file"; save_students
   when "4" then puts "You have chosen to load from the file";load_students
+  when "5" then puts "The file executing selected"; execute_file
   when "9" then puts "You have chosen to leave the program"; exit
   else
     puts "I don't know what you meant, try again"
@@ -164,6 +166,10 @@ def add_students_to_list(name, cohort = :november)
   # @students.each {|name, cohort| puts "#{name}, #{cohort}"}
 end
 =end
+
+def execute_file
+  puts __FILE__
+end
 
 try_load_students
 interactive_menu
