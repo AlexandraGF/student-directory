@@ -116,7 +116,7 @@ def load_students(filename = "students.csv")
   if filename == "students.csv"
     CSV.foreach("students.csv", "r") do |file|
       name, cohort = file
-      @students << {name: name, cohort: cohort.to_sym}
+      add_students_to_list(name, cohort)
     end
 =begin
   file = File.open("students.csv", "r") do |file|
@@ -130,7 +130,7 @@ def load_students(filename = "students.csv")
 elsif filename == "senior_students.csv"
   CSV.foreach("senior_students.csv", "r") do |file|
     name, cohort = file
-    @students << {name: name, cohort: cohort.to_sym}
+    add_students_to_list(name, cohort)
   end
 
 =begin
@@ -157,9 +157,16 @@ def try_load_students
     exit
   end
 end
+
+def add_students_to_list(name, cohort)
+  if cohort == " "
+  @students << { name: name, cohort: :november}
+else
+ @students << { name: name, cohort: cohort.to_sym}
+end
+end
+
 =begin
-def add_students_to_list(name, cohort = :november)
-#   @students << { name: name, cohort: cohort}
   stu = @students.sort_by {|a| a[:cohort].to_sym  }
   stu.each_with_index {|student, index| puts "#{index+1}. #{student[:name]} #{student[:cohort]}"}
 
@@ -169,6 +176,9 @@ end
 
 def execute_file
   puts __FILE__
+  File.open(__FILE__, 'r') do |file|
+      puts file.read
+    end
 end
 
 try_load_students
